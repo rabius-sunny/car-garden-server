@@ -23,6 +23,7 @@ client.connect(err => {
     const carCollection = client.db("carGarden").collection("cars");
     const bookingsCollection = client.db("carGarden").collection("bookings");
     const reviewsCollection = client.db("carGarden").collection("reviews");
+    const adminCollection = client.db("carGarden").collection("admins");
 
     app.post('/addCar', (req, res) => {
         const car = req.body
@@ -47,8 +48,17 @@ client.connect(err => {
     })
 
     app.get('/bookings', (req, res) => {
-        bookingsCollection.find({ email: req.query.email })
-            .toArray((err, bookings) => res.send(bookings))
+        const email = req.query.email
+        adminCollection.find({ email: email })
+            .toArray((err, admin) => {
+                if (admin.length > 0) {
+                    bookingsCollection.find()
+                        .toArray((err, allBookings) => res.send(allBookings))
+                } else {
+                    bookingsCollection.find({ email: email })
+                        .toArray((err, bookings) => res.send(bookings))
+                }
+            })
     })
 
     app.post('/addReview', (req, res) => {
@@ -60,6 +70,12 @@ client.connect(err => {
     app.get('/review', (req, res) => {
         reviewsCollection.find()
             .toArray((err, allReviews) => res.send(allReviews))
+    })
+
+    app.post('/addAdmin', (req, res) => {
+        const admin = req.body
+        adminCollection.insertOne(admin)
+            .then(result => res.send(insertedCount))
     })
 
 });
