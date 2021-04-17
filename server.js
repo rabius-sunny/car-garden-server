@@ -78,6 +78,11 @@ client.connect(err => {
             .then(result => res.send(insertedCount))
     })
 
+    app.get('/admins', (req, res) => {
+        adminCollection.find()
+            .toArray((err, admin) => res.send(admin))
+    })
+
 });
 
 app.listen(port, () => console.log('server is listening'))
