@@ -40,6 +40,10 @@ client.connect(err => {
         carCollection.find({ _id: ObjectId(req.params.id) })
             .toArray((err, car) => res.send(car))
     })
+    app.delete('/delete/:id', (req, res) => {
+        carCollection.deleteOne({ _id: ObjectId(req.params.id) })
+            .then((err, result) => res.send(result.deletedCount))
+    })
 
     app.post('/bookThisCar', (req, res) => {
         const booking = req.body
