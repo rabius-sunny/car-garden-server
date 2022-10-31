@@ -10,7 +10,7 @@ import bookingRouter from './routes/bookings.js'
 import userRouter from './routes/user.js'
 import supplierRouter from './routes/suppliers.js'
 
-const PORT = process.env.PORT || 7000
+const PORT = process.env.PORT || 6060
 
 const app = express()
 
