@@ -1,0 +1,24 @@
+{
+  "name": "car-garden",
+  "version": "1.0.0",
+  "description": "Fullstack Car Rental Application",
+  "main": "server.js",
+  "author": "Rezoan Hasan Sunny",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.1",
+    "concurrently": "^7.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.6.5",
+    "nodemon": "^2.0.20"
+  }
+}
